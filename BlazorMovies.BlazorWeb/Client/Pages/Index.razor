@@ -1,6 +1,6 @@
 ﻿@page "/"
 
-<p>Hello , @CustomToUpper(name)</p>
+<p>Hello , @StringUtilities.CustomToUpper(name)</p>
 
 <!--Explit expression = paranthesis to define all code-->
 <p> Let's add 2 + 2 = @(2 + 2)</p>
@@ -8,10 +8,20 @@
 <button @onclick="@(() => Console.WriteLine("I've Benn Clicked! (explicit)"))">Click me</button>
 <button @onclick="@WriteInLog">Click me</button>
 
-@code{
-    string name = "Motherfucker!";
+<div>
+    <h3>Movie</h3>
+    <p>Title: <b>@spiderman.Title</b></p>
+    <p>Release Date: <b>@spiderman.ReleaseDate.ToString("dd MM yyyy")</b></p>
+</div>
 
-    string CustomToUpper(string value) => value.ToUpper();
+@code{
+    string name = "Julia";
+
+    Movie spiderman = new Movie()
+    {
+        Title = "Spider-Man: Far From Home",
+        ReleaseDate = new DateTime(2019, 7, 2)
+    };
 
     void WriteInLog()
     {
