@@ -28,13 +28,20 @@ namespace BlazorMovies.BlazorWeb.Client.Pages
         };
         }
 
-        private async Task IncrementCount()
+        [JSInvokable]
+        public async Task IncrementCount()
         {
             currentCount++;
             currentCountStatic++;
             singleton.Value = currentCount;
             transient.Value = currentCount;
             await js.InvokeVoidAsync("dotnetStaticInvocation");
+        }
+
+        private async Task IncrementCountJavaScript()
+        {
+            await js.InvokeVoidAsync("dotnetInstanceInvocation",
+                DotNetObjectReference.Create(this));
         }
 
         [JSInvokable]
