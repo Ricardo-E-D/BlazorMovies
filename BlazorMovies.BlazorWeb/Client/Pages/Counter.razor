@@ -1,6 +1,4 @@
 ﻿@page "/counter"
-@inject BlazorMovies.BlazorWeb.Client.Services.SingletonService singleton
-@inject BlazorMovies.BlazorWeb.Client.Services.TransientService transient
 
 <h1>Counter</h1>
 
@@ -14,24 +12,3 @@
 <input type="number" @bind="currentCount" />
 
 <MoviesList Movies="movies" />
-
-@code {
-    private List<Movie> movies;
-    private int currentCount = 0;
-
-    protected override void OnInitialized()
-    {
-        movies = new List<Movie>()
-    {
-            new Movie(){Title = "Joker",ReleaseDate = new DateTime(2019, 7, 2)},
-            new Movie(){Title = "Avengers",ReleaseDate = new DateTime(2016,11,23)}
-        };
-    }
-
-    private void IncrementCount()
-    {
-        currentCount++;
-        singleton.Value = currentCount;
-        transient.Value = currentCount;
-    }
-}
