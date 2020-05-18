@@ -1,0 +1,43 @@
+﻿@typeparam TItem
+
+@if (ItemList == null)
+{
+    @if (NullTemplate != null)
+    {
+        @NullTemplate
+    }
+    else
+    {
+        //default content
+        <img src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/1f430a36197347.57135ca19bbf5.gif" />
+    }
+}
+else if (ItemList.Count == 0)
+{
+    @if (EmptyTemplate != null)
+    {
+        @EmptyTemplate
+    }
+    else
+    {
+        //default content
+        <text>There are no records to show</text>
+    }
+}
+else
+{
+    
+
+    @foreach (var element in ItemList)
+    {
+        @ElementTemplate(element)
+    }
+}
+
+@code {
+    [Parameter] public RenderFragment NullTemplate { get; set; }
+    [Parameter] public RenderFragment EmptyTemplate { get; set; }
+    [Parameter] public RenderFragment<TItem> ElementTemplate { get; set; }
+
+    [Parameter] public List<TItem> ItemList { get; set; }
+}
