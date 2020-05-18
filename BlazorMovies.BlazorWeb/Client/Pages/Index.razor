@@ -3,12 +3,15 @@
 
 <div>
     <h3>Movie</h3>
-    <MoviesList Movies="movies" />
-</div>
+    <MoviesList Movies="movies">
+        <NullTemplate>
+            <span style="color: red">This is loading...</span>
+        </NullTemplate>
+        <EmptyTemplate>
+            <span style="color: blue">No records to see</span>
 
-<div>
-    <h2>Create a movie</h2>
-    <DummyTextbox placeholder="movie name" />
+        </EmptyTemplate>
+    </MoviesList>
 </div>
 
 @code{

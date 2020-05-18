@@ -1,10 +1,26 @@
 ﻿@if (Movies == null)
 {
-    <img src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/1f430a36197347.57135ca19bbf5.gif" />
+    @if (NullTemplate != null)
+    {
+        @NullTemplate
+    }
+    else
+    {
+        //default content
+        <img src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/1f430a36197347.57135ca19bbf5.gif" />
+    }
 }
 else if (Movies.Count == 0)
 {
-    <text>There are no records to show</text>
+    @if (EmptyTemplate != null)
+    {
+        @EmptyTemplate
+    }
+    else
+    {
+        //default content
+        <text>There are no records to show</text>
+    }
 }
 else
 {
@@ -12,12 +28,14 @@ else
 
     @foreach (var movie in Movies)
     {
-        <IndividualMovie Movie="movie" DisplayButtons="displayButtons" DeleteMovie="DeleteMovie"/>
+        <IndividualMovie Movie="movie" DisplayButtons="displayButtons" DeleteMovie="DeleteMovie" />
     }
 }
 
 @code{
     [Parameter] public List<Movie> Movies { get; set; }
+    [Parameter] public RenderFragment NullTemplate { get; set; }
+    [Parameter] public RenderFragment EmptyTemplate { get; set; }
     bool displayButtons = false;
 
     private void DeleteMovie(Movie movie)
