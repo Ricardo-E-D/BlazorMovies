@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using static BlazorMovies.BlazorWeb.Client.Shared.MainLayout;
 
 namespace BlazorMovies.BlazorWeb.Client.Pages
 {
@@ -14,6 +15,7 @@ namespace BlazorMovies.BlazorWeb.Client.Pages
         [Inject] SingletonService singleton { get; set; }
         [Inject] TransientService transient { get; set; }
         [Inject] IJSRuntime js { get; set; }
+        [CascadingParameter] public AppState appState { get; set; }
 
         private List<Movie> movies;
         private int currentCount = 0;
