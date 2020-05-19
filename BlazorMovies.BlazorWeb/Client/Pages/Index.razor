@@ -1,28 +1,16 @@
 ﻿@page "/"
 @inject IRepository repository
-@inject BlazorMovies.BlazorWeb.Client.Services.SingletonService singleton
-@using static BlazorMovies.BlazorWeb.Client.Shared.MainLayout;
-
-<p style="color:@AppState.Color">Current count: @singleton.Value</p>
 
 <div>
     <h3>Movie</h3>
     <MoviesList Movies="movies" />
 </div>
 
-<button @onclick="AddNewMovie">Add new movie</button>
-
 @code{
-    [CascadingParameter] public AppState AppState { get; set; }
     private List<Movie> movies;
 
     protected override void OnInitialized()
     {
         movies = repository.GetMovies();
-    }
-
-    private void AddNewMovie()
-    {
-        movies.Add(new Movie() { Title = "Movie Sample", ReleaseDate = DateTime.Today });
     }
 }

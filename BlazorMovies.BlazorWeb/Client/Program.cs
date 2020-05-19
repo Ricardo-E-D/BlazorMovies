@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using System.Text;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;
-using BlazorMovies.BlazorWeb.Client.Services;
 using BlazorMovies.BlazorWeb.Client.Helpers;
 
 namespace BlazorMovies.BlazorWeb.Client
@@ -24,9 +23,6 @@ namespace BlazorMovies.BlazorWeb.Client
         private static void ConfigureServices(IServiceCollection services)
         {
             services.AddOptions();  //future usage for Authorization System
-
-            services.AddSingleton<SingletonService>();
-            services.AddTransient<TransientService>();
             services.AddTransient<IRepository, RepositoryInMemory>();
         }
     }
