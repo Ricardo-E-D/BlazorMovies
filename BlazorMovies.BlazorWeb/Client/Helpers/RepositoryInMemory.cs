@@ -8,6 +8,7 @@ namespace BlazorMovies.BlazorWeb.Client.Helpers
     {
         public List<Movie> GetMovies()
         {
+            Console.WriteLine("test from repos");
             return new List<Movie>()
             {
                 new Movie()
